@@ -47,47 +47,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.fade-in');
     animatedElements.forEach(el => observer.observe(el));
 
-    // 3. Contact Form Handler
+    // 3. Contact Form Handler (Web3Forms)
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Formspree Integration
-            const formData = new FormData(contactForm);
+
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerText;
 
             submitBtn.innerText = 'Sending...';
             submitBtn.disabled = true;
 
-            fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert('Thank you for your message! We will get back to you within 24 hours.');
-                        contactForm.reset();
-                    } else {
-                        response.json().then(data => {
-                            if (Object.hasOwn(data, 'errors')) {
-                                alert(data.errors.map(error => error.message).join(", "));
-                            } else {
-                                alert("Oops! There was a problem submitting your form");
-                            }
-                        });
-                    }
-                })
-                .catch(error => {
-                    alert("Oops! There was a problem submitting your form");
-                })
-                .finally(() => {
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.disabled = false;
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
                 });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    submitBtn.innerText = 'Sent!';
+                    submitBtn.style.background = '#34c759';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        submitBtn.innerText = originalBtnText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error(result.message || 'Something went wrong');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                submitBtn.innerText = 'Error - Try Again';
+                submitBtn.style.background = '#ff3b30';
+                setTimeout(() => {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
         });
     }
 
