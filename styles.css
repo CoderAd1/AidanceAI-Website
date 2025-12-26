@@ -319,8 +319,17 @@ a {
 }
 
 @keyframes glowPulse {
-    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
 }
 
 /* Buttons - Premium Apple Style */
@@ -432,7 +441,7 @@ a {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
     opacity: 0;
     transition: opacity var(--duration-normal) ease;
 }
@@ -568,7 +577,7 @@ a {
 
 /* Tech Stack Marquee - Elegant Display */
 .tech-stack {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-xl) 0;
     background: var(--bg-pure);
     text-align: center;
     overflow: hidden;
@@ -586,27 +595,20 @@ a {
 
 .marquee-content {
     display: inline-block;
-    animation: scroll 25s linear infinite;
+    animation: scroll 20s linear infinite;
 }
 
 .marquee-content img {
-    height: 48px;
-    margin: 0 var(--space-3xl);
-    opacity: 0.5;
-    filter: grayscale(100%);
-    transition: all var(--duration-normal) ease;
-}
-
-.marquee-content img:hover {
-    opacity: 1;
-    filter: grayscale(0%);
-    transform: scale(1.1);
+    height: 40px;
+    margin: 0 var(--space-2xl);
+    vertical-align: middle;
 }
 
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -741,7 +743,7 @@ a {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity var(--duration-slow) var(--ease-out-expo),
-                transform var(--duration-slow) var(--ease-out-expo);
+        transform var(--duration-slow) var(--ease-out-expo);
 }
 
 .fade-in.visible {
@@ -831,38 +833,66 @@ a {
 
     .premium-banner {
         flex-direction: column;
-        padding: var(--space-xl);
-        text-align: center;
-        border-radius: 24px;
+        align-items: stretch;
+        padding: var(--space-lg);
+        text-align: left;
+        border-radius: 20px;
     }
 
     .banner-content {
         max-width: 100%;
-        margin-bottom: var(--space-xl);
+        width: 100%;
     }
 
     .banner-visual {
-        justify-content: center;
+        display: none;
     }
 
-    .big-number {
-        font-size: 7rem;
-        letter-spacing: -6px;
+    .banner-title {
+        font-size: 2rem;
+        line-height: 1.15;
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.02em;
     }
 
-    .big-label {
-        font-size: 1.5rem;
-        letter-spacing: 3px;
+    .banner-title br {
+        display: none;
+    }
+
+    .banner-subtitle {
+        font-size: 1.125rem;
+        margin-bottom: var(--space-sm);
+        line-height: 1.4;
+    }
+
+    .banner-desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: var(--space-lg);
+        color: var(--text-muted);
+    }
+
+    .pill-label {
+        font-size: 11px;
+        padding: 6px 14px;
+        margin-bottom: var(--space-md);
     }
 
     .banner-actions {
-        justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: var(--space-sm);
     }
 
     .banner-actions .btn {
         width: 100%;
+        padding: 14px 20px;
+        font-size: 15px;
+        justify-content: center;
+    }
+
+    .banner-actions .btn.secondary {
+        width: auto;
+        padding: 14px 8px;
     }
 
     .tech-stack {
@@ -887,6 +917,28 @@ a {
     .big-number {
         font-size: 5rem;
         letter-spacing: -4px;
+    }
+
+    .premium-banner {
+        padding: var(--space-md);
+        border-radius: 16px;
+    }
+
+    .banner-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .banner-subtitle {
+        font-size: 1rem;
+    }
+
+    .banner-desc {
+        font-size: 0.875rem;
+    }
+
+    .section-padding {
+        padding: var(--space-2xl) var(--space-md);
     }
 }
 
@@ -998,4 +1050,450 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
+}
+
+/* ========================================
+   PREMIUM ANIMATIONS - ENHANCED
+   ======================================== */
+
+/* Navbar entrance animation */
+.navbar {
+    animation: navSlideDown 1s var(--ease-out-expo) forwards;
+}
+
+@keyframes navSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero content dramatic staggered entrance */
+.hero-content .eyebrow {
+    animation: fadeSlideUp 1s var(--ease-out-expo) 0.3s both;
+}
+
+.hero-content .hero-title {
+    animation: heroTitleReveal 1.2s var(--ease-out-expo) 0.5s both;
+}
+
+.hero-content .hero-sub {
+    animation: fadeSlideUp 1s var(--ease-out-expo) 0.8s both;
+}
+
+.hero-content .hero-buttons {
+    animation: fadeSlideUp 1s var(--ease-out-expo) 1s both;
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroTitleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(80px) scale(0.9);
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Hero title animation */
+.hero-title {
+    transition: transform 0.5s var(--ease-out-expo), filter 0.5s ease;
+}
+
+.hero-title:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+/* Eyebrow pill pulse */
+.eyebrow {
+    animation: fadeSlideUp 1s var(--ease-out-expo) 0.3s both,
+        eyebrowPulse 2.5s ease-in-out 2s infinite;
+}
+
+@keyframes eyebrowPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0);
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 0 12px rgba(0, 113, 227, 0.1);
+        transform: scale(1.03);
+    }
+}
+
+/* Button micro-interactions */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn.primary {
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.btn.primary:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 40px rgba(0, 113, 227, 0.4);
+}
+
+.btn.primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn.primary:hover::before {
+    left: 100%;
+}
+
+.btn.secondary:hover {
+    transform: translateX(5px);
+}
+
+/* Card animations - more dramatic */
+.bento-card {
+    will-change: transform, box-shadow;
+    transition: all 0.5s var(--ease-out-expo);
+}
+
+.bento-card:hover {
+    transform: translateY(-16px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Card glow effect on hover */
+.bento-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.bento-card:hover::after {
+    opacity: 1;
+}
+
+/* Card icon animation */
+.card-icon {
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.bento-card:hover .card-icon {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 8px 25px rgba(0, 113, 227, 0.3);
+}
+
+/* Section header animations */
+.section-header h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: all 0.6s var(--ease-out-expo);
+    transform: translateX(-50%);
+}
+
+.section-header:hover h2::after {
+    width: 60px;
+}
+
+/* Feature showcase animations */
+.feature-showcase {
+    transition: all 0.5s var(--ease-out-expo);
+}
+
+.feature-showcase:hover {
+    transform: scale(1.01);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
+}
+
+.feature-image img {
+    transition: all 0.6s var(--ease-out-expo);
+}
+
+.feature-showcase:hover .feature-image img {
+    transform: scale(1.08) rotate(2deg);
+}
+
+/* Link arrow animation */
+.link-arrow {
+    position: relative;
+}
+
+.link-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.4s var(--ease-out-expo);
+}
+
+.link-arrow:hover::after {
+    width: calc(100% - 20px);
+}
+
+.link-arrow:hover i {
+    animation: arrowBounce 0.5s ease infinite;
+}
+
+@keyframes arrowBounce {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(8px);
+    }
+}
+
+/* POC Banner animations */
+.premium-banner {
+    transition: all 0.5s var(--ease-out-expo);
+}
+
+.premium-banner:hover {
+    transform: scale(1.01);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+}
+
+.big-number {
+    animation: numberFloat 3s ease-in-out infinite, numberGlow 2s ease-in-out infinite;
+}
+
+@keyframes numberFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes numberGlow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 10px 30px rgba(0, 113, 227, 0.3));
+    }
+
+    50% {
+        filter: drop-shadow(0 20px 50px rgba(0, 113, 227, 0.5));
+    }
+}
+
+.big-label {
+    animation: labelFade 3s ease-in-out infinite;
+}
+
+@keyframes labelFade {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Visual blur dramatic movement */
+.visual-blur {
+    animation: ambientMove 6s ease-in-out infinite;
+}
+
+@keyframes ambientMove {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.15;
+    }
+
+    33% {
+        transform: translate(-40%, -60%) scale(1.2);
+        opacity: 0.25;
+    }
+
+    66% {
+        transform: translate(-60%, -40%) scale(1.1);
+        opacity: 0.2;
+    }
+}
+
+/* Glow background enhanced */
+.glow-bg {
+    animation: glowPulse 5s ease-in-out infinite !important;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+/* Form input animations */
+.form-group input,
+.form-group textarea {
+    transition: all 0.3s var(--ease-out-expo);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 4px var(--accent-light), 0 10px 30px rgba(0, 113, 227, 0.1);
+}
+
+/* Form group label animation */
+.form-group label {
+    transition: all 0.3s var(--ease-out-expo);
+}
+
+/* Submit button */
+.full-width.primary {
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.full-width.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 113, 227, 0.35);
+}
+
+
+
+
+/* Footer animations */
+.footer-logo {
+    transition: all 0.4s var(--ease-out-expo);
+    display: inline-block;
+}
+
+.footer-logo:hover {
+    transform: scale(1.1);
+    color: var(--accent);
+}
+
+/* Nav links hover */
+.desktop-links a {
+    position: relative;
+}
+
+.desktop-links a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s var(--ease-out-expo);
+}
+
+.desktop-links a:not(.nav-cta):hover::after {
+    width: 100%;
+}
+
+/* Page load animation */
+body {
+    animation: pageLoad 0.8s ease;
+}
+
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pill label in banner */
+.pill-label {
+    animation: pillPulse 2s ease-in-out infinite;
+}
+
+@keyframes pillPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.15);
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
